@@ -1,0 +1,136 @@
+@font-face {
+    font-family: "ITC Benguiat Gothic Std Book";
+    src: url("../fonts/ITC Benguiat Gothic Std Book/ITC Benguiat Gothic Std Book.otf"), format("opentype");
+}
+
+:root {
+    --txt-color: #fff;
+    --title-color: #010913;
+}
+
+* {
+    font-family: "ITC Benguiat Gothic Std";
+}
+
+body {
+    background-size: cover !important;
+    height: 100vh;
+}
+
+section.pagCadastro {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.contentCadastro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form.cadastroCustomer,
+.cadastrobarber {
+    display: flex;
+    width: 70vw;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.hide {
+    display: none;
+}
+
+div#chooseCadastro label {
+    margin: 5px;
+}
+
+#chooseCadastro svg {
+    height: 1.6rem;
+    width: 1.6rem;
+    margin: 2.2rem;
+}
+
+div#chooseCadastro input:hover + svg path {
+    fill: #010913;
+}
+
+div#chooseCadastro input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#chooseCadastro svg path {
+    fill: #fff;
+}
+
+div#chooseCadastro {
+    display: flex;
+    justify-content: center;
+}
+
+div#sign-up_customer,
+div#sign-up_barber {
+    justify-content: center;
+    background: radial-gradient(black, transparent);
+}
+
+.cadastroCustomer label,
+.cadastrobarber label {
+    color: #fff;
+}
+
+.cadastroCustomer input,
+.cadastrobarber input {
+    background: #c4c4c4;
+    margin-left: 2.5rem;
+    padding: 4px;
+    border: 1px solid #c4c4c4;
+    border-radius: 6%;
+    margin-bottom: 5%;
+    margin-top: 1.5rem;
+    margin-right: 2.5rem;
+}
+
+.cadastroCustomer input:focus-visible,
+.cadastrobarber input:focus-visible {
+    outline: transparent;
+}
+
+.cadastroCustomer input[type="file"],
+.cadastrobarber input[type="file"] {
+    background: transparent;
+    color: #fff;
+}
+
+.cadastroCustomer button,
+.cadastrobarber button {
+    margin-left: 2.5rem;
+    padding: 9px;
+    border: 1px solid #c4c4c4;
+    border-radius: 4px;
+    margin-bottom: 5%;
+    cursor: pointer;
+    background: transparent;
+    color: #fff;
+    margin-top: 1.5rem;
+    margin-right: 2.5rem;
+    transition: background 0.5s;
+}
+
+.cadastroCustomer button:hover,
+.cadastrobarber button:hover {
+    background: #010913;
+}
+
+@media only screen and (max-width: 767px) {
+    form.cadastroCustomer,
+    .cadastrobarber {
+        text-align: center;
+    }
+}
+
+.container-social.flex span {
+    color: #fff;
+}

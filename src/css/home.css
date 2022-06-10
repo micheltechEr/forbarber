@@ -1,0 +1,122 @@
+@font-face {
+    font-family: "ITC Benguiat Gothic Std Book";
+    src: url("../fonts/ITC Benguiat Gothic Std Book/ITC Benguiat Gothic Std Book.otf"), format("opentype");
+}
+
+:root {
+    --txt-color: #fff;
+    --title-color: #010913;
+}
+
+* {
+    font-family: "ITC Benguiat Gothic Std";
+}
+
+.flex {
+    display: flex;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.home-banner {
+    padding: 100px 0 0;
+}
+
+.header-home {
+    background: linear-gradient(black, black), url("../img//reis-26-1_DAlXy0wng-unsplash.jpg") top center fixed;
+    background-size: cover;
+    background-blend-mode: saturation;
+    height: 600px;
+}
+.home-banner {
+    padding: 100px 0 0;
+    text-align: center;
+    font-family: "ITC Benguiat Gothic Std";
+    color: var(--txt-color);
+}
+
+.header-home h2 {
+    font-weight: 500;
+    margin-bottom: 20%;
+    font-size: 2rem;
+}
+.header-home h3 {
+    font-weight: 400;
+    margin-bottom: 6%;
+}
+.header-home a {
+    text-decoration: none;
+    color: var(--txt-color);
+    text-transform: uppercase;
+    border: 1px solid var(--txt-color);
+    padding: 10px;
+    font-size: 20px;
+    transition: 0.3s 0.2s;
+    position: relative;
+}
+
+.header-home a:hover {
+    background: #010913;
+}
+
+main.content-home-page {
+    flex-direction: column;
+    align-items: center;
+}
+
+main.content-home-page h2 {
+    font-weight: 500;
+    font-size: 1.7rem;
+    color: var(--title-color);
+    position: relative;
+    top: 5px;
+}
+
+main.content-home-page p {
+    width: 80%;
+    color: #8e8d8d;
+}
+
+.contentMotivation {
+    border: 1px solid var(--title-color);
+    flex-wrap: wrap;
+    width: 19%;
+    margin: 5px;
+}
+
+.contentMotivation p {
+    text-align: center;
+}
+.container-social.flex {
+    flex-direction: column;
+}
+.container-social.flex span {
+    margin-bottom: 2%;
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+.howWork.flex.justify-center {
+    margin-bottom: 2%;
+}
+
+.social-footer {
+    width: 100%;
+    margin-bottom: 2%;
+}
+
+.social-footer.flex.justify-center a {
+    margin: 10px;
+}
+
+@media only screen and (max-width: 767px) {
+    .containerMotivation {
+        flex-direction: column;
+    }
+    .contentMotivation {
+        width: 46vw;
+        text-align: center;
+    }
+}

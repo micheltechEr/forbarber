@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'ITC Benguiat Gothic Std Book';
+    src: url('../fonts/ITC Benguiat Gothic Std Book/ITC Benguiat Gothic Std Book.otf'), format('opentype');
+}
+
+:root{
+    --txt-color: #FFF;
+    --title-color:#010913;
+}
+ 
+*{
+    font-family: 'ITC Benguiat Gothic Std';
+}
+
+body{
+    background-color: #E5E5E5;
+}
+
+
+
+
+.login-page{
+    height: 100vh;
+}
+
+.content-choose-login {
+    padding-top: 20%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5%;
+}
+
+.content-choose-login span.chooseOp {
+    background: var(--header-color);
+    color: var(--txt-color);
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 0 10% 0 10%;
+    cursor: pointer;
+}
+
+.e-mail-pass {
+    position: relative;
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+
+
+.e-mail-pass label.form-label {
+    padding: 2%;
+}
+
+.e-mail-pass input {
+    background: #C4C4C4;
+    width: calc(100% - 30%);
+    margin-left: 2.5rem;
+    padding: 4px;
+    border: 1px solid #C4C4C4;
+    border-radius: 4%;
+    margin-bottom: 5%;
+    margin-top: 1.5rem;
+}
+
+.e-mail-pass input:focus-visible {
+    outline: transparent;
+}
+
+.e-mail-pass button {
+    background: transparent;
+    color: #FFF;
+    text-transform: uppercase;
+    border: 1px solid #FFF;
+    width: 50%;
+    padding: 8px;
+    cursor: pointer;
+    transition: all .4s;
+}
+
+.e-mail-pass button:hover {
+    background: #FFFF;
+    color: #010913;
+}
+
+span#forgot_password {
+    position: relative;
+    top: -30px;
+    cursor: pointer;
+}
+
+.modal-header button {
+    color: #FFF;
+    background: transparent;
+    border: none;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 767px){
+    .login-page{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 50vh;
+    }
+    .content-choose-login span.chooseOp{
+        margin-bottom: 10%;
+    }
+
+}
+
+

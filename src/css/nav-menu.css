@@ -1,0 +1,91 @@
+@font-face {
+    font-family: "ITC Benguiat Gothic Std Book";
+    src: url("../fonts/ITC Benguiat Gothic Std Book/ITC Benguiat Gothic Std Book.otf"), format("opentype");
+}
+
+:root {
+    --txt-color: #fff;
+    --header-color: #010913;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.flex {
+    display: flex;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.logoSite {
+    position: relative;
+    width: 11%;
+    height: 100%;
+    right: 36%;
+}
+nav {
+    position: fixed;
+    display: flex;
+    background-color: transparent;
+    width: 100%;
+    justify-content: center;
+    align-items: baseline;
+    z-index: 100;
+}
+nav ul {
+    list-style: none;
+    display: inline-flex;
+}
+
+nav.floatMenu.menu-on {
+    background: var(--header-color);
+}
+nav ul li {
+    padding: 10%;
+}
+
+nav ul li a {
+    font-family: "ITC Benguiat Gothic Std";
+    text-decoration: none;
+    color: var(--txt-color);
+    font-size: 1rem;
+    float: left;
+}
+
+button#floatMenuOpener {
+    display: none;
+}
+
+@media only screen and (max-width: 767px) {
+    nav ul li a {
+        display: none;
+    }
+    nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .logoSite {
+        right: 0;
+        top: 0;
+        width: 30%;
+    }
+
+    .responsive ul {
+        flex-direction: column;
+    }
+
+    .responsive ul li a {
+        display: block;
+    }
+
+    button#floatMenuOpener {
+        display: block;
+    }
+}
