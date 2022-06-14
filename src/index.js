@@ -14,11 +14,11 @@ root.render(
 <BrowserRouter>
 <NavMenu />
 <Routes basename={process.env.PUBLIC_URL}>
-        <Route  index path='/forbarber'  element={<Home/>}/>
-        <Route path='/forbarber/login-pag' element={<LoginPage/>}/>
-        <Route path='/forbarber/cadastro' element={<CadastroPage/>}/>
-        <Route path='/forbarber/perfil_cliente' element={<CustomerProfile/>}/>
-        <Route path='/forbarber/perfil_barbearia' element={<BarberProfile/>}/>
+        <Route  index path='/'  element={<Home/>}/>
+        <Route path='/login-pag' element={<LoginPage/>}/>
+        <Route path='/cadastro' element={<CadastroPage/>}/>
+        <Route path='/perfil_cliente' element={<CustomerProfile/>}/>
+        <Route path='/perfil_barbearia' element={<BarberProfile/>}/>
 </Routes>  
 
 <FooterApp />
