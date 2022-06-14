@@ -14,13 +14,14 @@ root.render(
 <BrowserRouter>
 <NavMenu />
 
-<Routes basename={process.env.PUBLIC_URL}>
+<HashRouter>
         <Route  index path='/'  element={<Home/>}/>
         <Route path='/login-pag' element={<LoginPage/>}/>
         <Route path='/cadastro' element={<CadastroPage/>}/>
         <Route path='/perfil_cliente' element={<CustomerProfile/>}/>
         <Route path='/perfil_barbearia' element={<BarberProfile/>}/>
-</Routes>  
+</HashRouter>
+ 
 
 <FooterApp />
 </BrowserRouter>
