@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import '../fonts/ITC Benguiat Gothic Std Book/ITC Benguiat Gothic Std Book.otf';
 import '../css/modal.css';
 import '../css/barber_profile.css';
-import FooterApp from '../components/footer-app';
 import Swal from 'sweetalert2'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { storage, db } from '../firebase/firebase';
-import { collection, getDocs, query, where, addDoc, documentId } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClose } from '@fortawesome/free-solid-svg-icons'
 import { deleteObject, getDownloadURL, uploadBytes } from 'firebase/storage'
@@ -53,9 +52,6 @@ function BarberProfile() {
     },
 
     getDownloadURLBarber: function () {
-      const img = document.getElementById('barber_profile');
-      const imgSrc = document.getElementById('pic-prof');
-
       getDownloadURL(storage.ref(`${location.state.barber_profile}`))
         .then((url) => {
           const xhr = new XMLHttpRequest();
@@ -203,7 +199,7 @@ function BarberProfile() {
       <div className='barberSecion'>
         <button id='signout_barber' onClick={() => { signoutBarber() }}>SAIR</button>
         <div id='profile_picture'>
-          <img id='barber_profile' src='' />
+          <img alt='Barber Profile' id='barber_profile' src='' />
         </div>
         <span className='titleProfile'>Barbearia</span>
         <h3 id='nameBarber'>{location.state.name}</h3>
@@ -244,7 +240,7 @@ function BarberProfile() {
               <Form.Group className="mb-3" controlId="formBasicNome">
                 <Form.Label>Foto de perfil </Form.Label>
                 <div id='profile_picture'>
-                  <img id='pic-prof' className='hide' src=''   />
+                  <img alt="Profile pic" id='pic-prof' className='hide' src=''   />
                 </div>
                 <Form.Control type="file" onChange={(e) => { loadFile(e); setFotoBarber(e.target.files[0]) }} />
               </Form.Group>

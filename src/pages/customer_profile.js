@@ -1,8 +1,7 @@
-import React, { useState, Suspense } from 'react';
+import React, { useState} from 'react';
 import '../fonts/ITC Benguiat Gothic Std Book/ITC Benguiat Gothic Std Book.otf';
 import '../css/modal.css';
 import '../css/customer_profile.css';
-import FooterApp from '../components/footer-app';
 import Swal from 'sweetalert2'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { collection, getDocs, deleteDoc, doc, query, where, addDoc } from "firebase/firestore";
@@ -175,9 +174,7 @@ function CustomerProfile() {
                       })
 
                     updatePassword(currCustomer, state.customer_password).
-                      then(() => {
-
-                      })
+                      then(() => {})
 
                     Swal.fire('Sucesso', 'Dados atualizados com sucesso, faça o login novamente para visualizar as mudanças', 'sucess')
                     handleCloseCustomer();
@@ -308,7 +305,7 @@ function CustomerProfile() {
       <div className='customerSecion'>
         <button id='signout_customer' onClick={() => { signoutCustomer() }}>SAIR</button>
         <div id='profile_picture'>
-          <img id='customer_profile' src='' />
+          <img alt='Customer profile' id='customer_profile' src='' />
         </div>
         <span className='titleProfile'>Cliente</span>
         <h3 id='nameCustomer'>{location.state.name}</h3>

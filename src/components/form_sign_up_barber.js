@@ -6,7 +6,7 @@ import { Form, Button } from 'react-bootstrap'
 import { useState } from "react";
 import {  useNavigate } from 'react-router-dom';
 import '../css/cadastro.css';
-import { collection, doc, addDoc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, set } from "@firebase/database";
 

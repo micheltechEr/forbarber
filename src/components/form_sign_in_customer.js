@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
@@ -26,7 +26,6 @@ function SignInCustomer(props) {
             if (state.emailCliente && state.senhaCliente) {
                 signInWithEmailAndPassword(auth, state.emailCliente, state.senhaCliente)
                     .then((userCredential) => {
-                        const user = userCredential.user;
                         const customerAuth = auth.currentUser;
                         const customerAuthRef = ref(getDatabase())
 
@@ -88,7 +87,6 @@ function SignInCustomer(props) {
 
                     })
                     .catch((error) => {
-                        const errorCode = error.code;
                         const errorMessage = error.message;
                         console.log(errorMessage)
                     })
