@@ -11,7 +11,7 @@ function Home() {
                 <div className='home-banner'>
                     <h2>ForBarber</h2>
                     <h3>Sistema de agendamento para barbearia</h3>
-                    <Link to={'/cadastro'} className='buttonSignUp' reloadDocument={true}>
+                    <Link to={'/forbarber/cadastro'} className='buttonSignUp' reloadDocument={true}>
                         <span>comece agora</span>
                     </Link>
                 </div>

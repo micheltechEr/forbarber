@@ -49,9 +49,9 @@ function NavMenu() {
       <nav className='floatMenu' id="floatMenu" >
         <img src={logo} className='logoSite' alt='Logo' />
         <ul>
-          <li><a href='#' onClick={() => { navigate("/"); window.location.reload() }}>Home</a></li>
+          <li><a href='#' onClick={() => { navigate("/forbarber"); window.location.reload() }}>Home</a></li>
           <li><a href="#about_project" >Sobre</a></li>
-          <li><Link to={'/login-pag'} reloadDocument={true}>Acessar </Link></li>
+          <li><Link to={'/forbarber/login-pag'} reloadDocument={true}>Acessar </Link></li>
         </ul>
         <Button variant="secondary" id='floatMenuOpener' onClick={() => { openMenuMobile() }}>
           <FontAwesomeIcon icon={faBars} />

@@ -102,7 +102,7 @@ function Form_SignUp() {
                   .then(() => {
                     Swal.fire('Sucesso!', 'Cadastro efetuado com sucesso, confirme clicando no link enviado ao seu e-mail', 'sucess')
                   });
-                navigate('/')
+                navigate('/forbarber')
               })
               .catch((error) => {
                 const errorCode = error.code
