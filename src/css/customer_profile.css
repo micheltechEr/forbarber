@@ -56,6 +56,36 @@ button#add_schedule {
     cursor: pointer;
 }
 
+select#barber_names {
+    padding: 2px;
+    background: #010913;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    color: #FFF;
+}
+
+input.date-scheduler {
+    padding: 2px;
+    background: #010913;
+    color: #FFF;
+    border: 1px solid;
+}
+
+input[type="datetime-local" i]::-webkit-calendar-picker-indicator {
+    background-image: url("../img//date-picker.svg");
+}
+
+.containter-btn button {
+    color: #fff;
+    background: #010913;
+    border: 1px solid #010913;
+    border-radius: 5%;
+    padding: 10px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1px solid;
+}
+
 button#check_schedule {
     color: #fff;
     background: #010913;
