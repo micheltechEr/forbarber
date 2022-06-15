@@ -72,7 +72,7 @@ input.date-scheduler {
 }
 
 input[type="datetime-local" i]::-webkit-calendar-picker-indicator {
-    background-image: url("../img//date-picker.svg");
+    background-image: url("../img//date-picker-local.svg");
 }
 
 .containter-btn button {
