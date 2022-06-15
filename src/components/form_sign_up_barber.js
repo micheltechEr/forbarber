@@ -1,13 +1,13 @@
 import React from "react";
-import { storage,db } from '../firebase/firebase';
+import { storage, db } from '../firebase/firebase';
 import { uploadBytes } from 'firebase/storage'
 import Swal from 'sweetalert2'
 import { Form, Button } from 'react-bootstrap'
 import { useState } from "react";
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../css/cadastro.css';
 import { collection, addDoc } from "firebase/firestore";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { getDatabase, ref, set } from "@firebase/database";
 
 function Form_SignUpBarber() {
@@ -45,7 +45,7 @@ function Form_SignUpBarber() {
       const validateEmailBarber = barberFunctions.validateEmailBarber
       const fotoBarberiaRef = storage.ref(`fotoBarbearia/${fotoBarbearia.name}`);
 
-      if (state.cidade !== ""  && state.nome !== "" && state.telefone_barbearia !== "") {
+      if (state.cidade !== "" && state.nome !== "" && state.telefone_barbearia !== "") {
         if (fotoBarbearia == null) return;
         if (state.email_barbearia !== '' && state.senha_barbearia !== '') {
           if (validateEmailBarber(state.email_barbearia)) {
@@ -62,24 +62,21 @@ function Form_SignUpBarber() {
                       telefone_barbearia: state.telefone_barbearia,
                       uid: auth.currentUser.uid,
                       barber_profile: fotoBarberiaRef.fullPath,
-                      email_barber : state.email_barbearia,
-                      password_barber : state.senha_barbearia
+                      email_barber: state.email_barbearia,
+                      password_barber: state.senha_barbearia
                     }
-                    
+
                     set(ref(barberAuthRef, 'barber/' + barberAuth.uid), {
                       barberData
                     })
 
-                    addDoc(collection(db, "agendamentos"), {
+                    addDoc(collection(db, "barbearias"), {
                       email_barber: state.email_barbearia,
                       nome_barber: state.nome_barbearia,
                       password_barber: state.senha_barbearia,
                       telefone_barbearia: state.telefone_barbearia,
                       uid: auth.currentUser.uid
                     })
-
-                    Swal.fire('Sucesso','Cadastro efetuado com sucesso!','success')
-                    navigate('/')
 
                   }
                   catch (e) {
@@ -103,6 +100,12 @@ function Form_SignUpBarber() {
                     errorReturn(errorMessage, errorCode)
 
                   })
+                sendEmailVerification(auth.currentUser)
+                  .then(() => {
+                    console.log(auth.currentUser)
+                    Swal.fire('Sucesso!', 'Cadastro efetuado com sucesso, confirme clicando no link enviado ao seu e-mail', 'sucess')
+                  });
+                navigate('/')
 
               })
               .catch((error) => {
@@ -176,7 +179,7 @@ function Form_SignUpBarber() {
 
         <Form.Group className="mb-3" controlId="formBasicFile">
           <Form.Label>Foto de perfil</Form.Label>
-          <Form.Control type="file" onChange={(e) => { setfotoBarbearia(e.target.files[0]) }}  accept="image/png, image/jpeg" />
+          <Form.Control type="file" onChange={(e) => { setfotoBarbearia(e.target.files[0]) }} accept="image/png, image/jpeg" />
         </Form.Group>
 
         <Button variant="primary" type="submit" onClick={(e) => { saveEmailandPassword(); e.preventDefault() }}>

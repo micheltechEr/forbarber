@@ -1,10 +1,10 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import '../fonts/ITC Benguiat Gothic Std Book/ITC Benguiat Gothic Std Book.otf';
 import '../css/modal.css';
 import '../css/customer_profile.css';
 import Swal from 'sweetalert2'
 import { useLocation, useNavigate } from 'react-router-dom';
-import { collection, getDocs, deleteDoc, doc, query, where, addDoc } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc, query, where, addDoc, setDoc, getDoc } from "firebase/firestore";
 import { storage, db } from '../firebase/firebase';
 import { deleteObject, getDownloadURL, uploadBytes } from 'firebase/storage'
 import { getDatabase, ref, remove, update } from "@firebase/database";
@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClose } from '@fortawesome/free-solid-svg-icons'
 import { getAuth, updateEmail, updatePassword, reauthenticateWithCredential, EmailAuthProvider, signOut } from "firebase/auth";
 import { Modal, Form, Button } from 'react-bootstrap';
+import { async } from '@firebase/util';
 
 function CustomerProfile() {
   const location = useLocation();
@@ -174,7 +175,7 @@ function CustomerProfile() {
                       })
 
                     updatePassword(currCustomer, state.customer_password).
-                      then(() => {})
+                      then(() => { })
 
                     Swal.fire('Sucesso', 'Dados atualizados com sucesso, faça o login novamente para visualizar as mudanças', 'sucess')
                     handleCloseCustomer();
@@ -207,27 +208,41 @@ function CustomerProfile() {
       var barberUid = barberValue.value;
       var barberName = barberValue.options[barberValue.selectedIndex].text;
 
-      function getLocalDate(scheduler_date) {
-        var dt = new Date(scheduler_date);
-        var minutes = dt.getTimezoneOffset();
-        dt = new Date(dt.getTime() + minutes * 60000);
-        return dt;
+      // function getLocalDate(scheduler_date) {
+      //   var dt = new Date(scheduler_date);
+      //   var minutes = dt.getTimezoneOffset();
+      //   dt = new Date(dt.getTime() - 3  + minutes * 60000);
+      //   return dt;
+      // }
+
+      const horario_check = new Date(agendar.horario_marcado).toLocaleDateString() + " " +new Date(agendar.horario_marcado).toLocaleTimeString();
+
+
+      const docRef = doc(db, "agendamentos", horario_marcado);
+      const docSnap = await getDoc(docRef);
+
+
+      console.log(docSnap.exists())
+      if (!docSnap.exists()) {
+        await setDoc(doc(db, "agendamentos", horario_marcado), {
+          barber_uid: barberUid,
+          horario_marcado: horario_check,
+          nome_barber: barberName,
+          nome_cliente: location.state.name,
+          user_uid: location.state.id_customer
+        }).then(() => {
+          Swal.fire('Sucesso', 'Agendamento feito com sucesso', 'sucess')
+          handleCloseCustomerScheduler()
+        })
+          .catch((e) => {
+            Swal.fire('Ops!', 'Ocorreu algum erro, tente novamente', 'error')
+          })
+      }
+      else {
+        Swal.fire('Ops!', 'Horário já marcado', 'error')
+
       }
 
-      const horario_check = getLocalDate(agendar.horario_marcado).toLocaleString();
-      await addDoc(collection(db, "agendamentos"), {
-        barber_uid: barberUid,
-        horario_marcado: horario_check,
-        nome_barber: barberName,
-        nome_cliente: location.state.name,
-        user_uid: location.state.id_customer
-      }).then(() => {
-        Swal.fire('Sucesso', 'Agendamento feito com sucesso', 'sucess')
-        handleCloseCustomerScheduler()
-      })
-        .catch((e) => {
-          Swal.fire('Ops!', 'Ocorreu algum erro, tente novamente', 'error')
-        })
 
     },
     checkScheduler: async function () {

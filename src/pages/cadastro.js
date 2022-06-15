@@ -3,7 +3,6 @@ import '../fonts/ITC Benguiat Gothic Std Book/ITC Benguiat Gothic Std Book.otf'
 import '../css/cadastro.css'
 import Form_SignUp from '../components/form_sign_up._customer';
 import Form_SignUpBarber from '../components/form_sign_up_barber';
-import RadioButton from '../components/radio_button_sign_up';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faScissors } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons'
@@ -26,7 +25,7 @@ function SignUpPage() {
     const changeBackground = () => {
         window.onload = function () {
             if(window.location.pathname === '/cadastro'){
-                document.querySelector('body').style.background = `url(/static/media/1371360.fbcc7b96.jpg) top center fixed`;
+                document.querySelector('body').style.background = `url(/img/1371360.jpg) top center fixed`;
             }
         }
     }
