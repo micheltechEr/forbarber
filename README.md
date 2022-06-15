@@ -1,5 +1,7 @@
 # Getting Started with Create React App
+## Forbarber 
 
+### This is a final course project. Using React JS and Firebase. Forbarber is a scheduling system for barbershops. Containing client and barbershop mode. Enjoy!!
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
