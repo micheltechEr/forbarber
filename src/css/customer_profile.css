@@ -120,6 +120,12 @@ div#check_scheduler button {
     cursor: pointer;
 }
 
+
+div#check_scheduler a {
+    color: #FFF;
+    text-decoration: none;
+}
+
 button#edit_customer {
     color: #fff;
     background: #093c7b;

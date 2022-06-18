@@ -30,7 +30,7 @@ function Home() {
                     </div>
                     <div className='contentMotivation flex justify-center'>
                         <span>Contato via WhatsApp 📱</span>
-                        <p>Você poderá entrar em contato com o WhatsApp de sua barbearia.</p>
+                        <p>A barbearia poderá entrar em contato com o cliente, através da seção de consulta dos agendamentos.</p>
                     </div>
 
                     <div className='contentMotivation flex justify-center'>

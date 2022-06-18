@@ -172,7 +172,7 @@ function BarberProfile() {
       querySnapshot.forEach((doc) => {
         document.querySelector('html').setAttribute('scheduler_id', doc.id)
         const scheduler_checker = document.getElementById("check_scheduler");
-        scheduler_checker.insertAdjacentHTML('afterbegin', `<span>Cliente : ${doc.data().nome_cliente}</span> <br> <span>Dia e hora : ${doc.data().horario_marcado}</span>`)
+        scheduler_checker.insertAdjacentHTML('afterbegin', `<span>Cliente : ${doc.data().nome_cliente}</span> <br> <span>Dia e hora : ${doc.data().horario_marcado} <br>  WhatsApp : <a href='//wa.me/55${doc.data().telefone_cliente}'>${doc.data().telefone_cliente}</a></span>`)
       });
     },
 

@@ -163,8 +163,7 @@ function CustomerProfile() {
                   .catch((error) => {
                     console.log(error)
                   });
-
-
+      
                 update(ref(db2, `customer/${location.state.id_customer}/custData`),
                   newCustomerData
                 )
@@ -179,7 +178,7 @@ function CustomerProfile() {
 
                     Swal.fire('Sucesso', 'Dados atualizados com sucesso, faça o login novamente para visualizar as mudanças', 'sucess')
                     handleCloseCustomer();
-                    navigate("/");
+                    navigate("/login-pag");
                   })
                   .catch((e) => {
                     alert(e)
@@ -208,15 +207,7 @@ function CustomerProfile() {
       var barberUid = barberValue.value;
       var barberName = barberValue.options[barberValue.selectedIndex].text;
 
-      // function getLocalDate(scheduler_date) {
-      //   var dt = new Date(scheduler_date);
-      //   var minutes = dt.getTimezoneOffset();
-      //   dt = new Date(dt.getTime() - 3  + minutes * 60000);
-      //   return dt;
-      // }
-
       const horario_check = new Date(agendar.horario_marcado).toLocaleDateString() + " " +new Date(agendar.horario_marcado).toLocaleTimeString();
-
 
       const docRef = doc(db, "agendamentos", horario_marcado);
       const docSnap = await getDoc(docRef);
@@ -229,7 +220,8 @@ function CustomerProfile() {
           horario_marcado: horario_check,
           nome_barber: barberName,
           nome_cliente: location.state.name,
-          user_uid: location.state.id_customer
+          user_uid: location.state.id_customer,
+          telefone_cliente : location.state.phone_customer
         }).then(() => {
           Swal.fire('Sucesso', 'Agendamento feito com sucesso', 'sucess')
           handleCloseCustomerScheduler()
@@ -240,10 +232,7 @@ function CustomerProfile() {
       }
       else {
         Swal.fire('Ops!', 'Horário já marcado', 'error')
-
       }
-
-
     },
     checkScheduler: async function () {
       const q = query(collection(db, "agendamentos"), where("user_uid", "==", location.state.id_customer));

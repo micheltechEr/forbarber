@@ -56,7 +56,6 @@ function Form_SignUp() {
 
                 uploadBytes(fotoClienteRef, fotoCliente).then(() => {
 
-                  console.log('Upload');
                   console.log(fotoClienteRef.fullPath)
                   try {
                     let custData = {
@@ -102,7 +101,7 @@ function Form_SignUp() {
                   .then(() => {
                     Swal.fire('Sucesso!', 'Cadastro efetuado com sucesso, confirme clicando no link enviado ao seu e-mail', 'sucess')
                   });
-                navigate('/')
+                  navigate("/login-pag");
               })
               .catch((error) => {
                 const errorCode = error.code
@@ -165,7 +164,7 @@ function Form_SignUp() {
 
         <Form.Group className="mb-3" controlId="formBasicDataNascimento">
           <Form.Label>Data de nascimento * </Form.Label>
-          <Form.Control type="date" name="data_nascimento" onChange={handleChange} value={data_nascimento} />
+          <Form.Control type="date" name="data_nascimento" onChange={handleChange} value={data_nascimento} max="2999-12-31" />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
