@@ -105,7 +105,7 @@ function Form_SignUpBarber() {
                     console.log(auth.currentUser)
                     Swal.fire('Sucesso!', 'Cadastro efetuado com sucesso, confirme clicando no link enviado ao seu e-mail', 'sucess')
                   });
-                navigate('/')
+                navigate('/login-pag')
 
               })
               .catch((error) => {
