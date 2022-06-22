@@ -5,7 +5,7 @@ import '../css/barber_profile.css';
 import Swal from 'sweetalert2'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { storage, db } from '../firebase/firebase';
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where,deleteDoc,doc } from "firebase/firestore";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClose } from '@fortawesome/free-solid-svg-icons'
 import { deleteObject, getDownloadURL, uploadBytes } from 'firebase/storage'
@@ -17,9 +17,8 @@ function BarberProfile() {
   const location = useLocation();
   const navigate = useNavigate();
   const currBarber = getAuth().currentUser;
-  const barberAuthRef = getDatabase();
+
   const db2 = getDatabase();
-  const fotoBarberRef = storage.ref(`${location.state.barber_profile}`);
 
   const [openBarber, setOpenBarber] = useState(false);
   const [fotoBarbearia, setFotoBarber] = useState(null)
@@ -40,6 +39,8 @@ function BarberProfile() {
 
 
 
+
+
   const barberProfileOperations = {
     handleChange: function (event) {
       const { name, value } = event.target;
@@ -52,6 +53,7 @@ function BarberProfile() {
     },
 
     getDownloadURLBarber: function () {
+      document.querySelector('html').setAttribute('barber_id', location.state.id_barber)
       getDownloadURL(storage.ref(`${location.state.barber_profile}`))
         .then((url) => {
           const xhr = new XMLHttpRequest();
@@ -69,17 +71,23 @@ function BarberProfile() {
 
     removeBarber: function () {
       const user = getAuth();
+      const barberAuthRef = getDatabase();
+      const fotoBarberRef = storage.ref(`${location.state.barber_profile}`);
       const credential = EmailAuthProvider.credential(state.email_barber, state.barber_password)
 
+      const currAuthBarber = getAuth().currentUser;
       reauthenticateWithCredential(user.currentUser, credential)
         .then(() => {
-          remove(ref(barberAuthRef, 'barber/' + location.state.uid))
-            .then(() => {
-              currBarber.delete()
+          remove(ref(barberAuthRef, 'barber/' + location.state.id_barber))
+            .then(async () => {
+         
+               await deleteDoc(doc(db, "barbearias",nameBarber));
+
+              currAuthBarber.delete()
                 .then(function () {
                   deleteObject(fotoBarberRef).then(() => {
                     Swal.fire('Sucesso', 'Conta removida com sucesso', 'sucess')
-                    navigate("/")
+                    navigate("/login-pag")
                   })
                     .catch((e) => {
                       console.log(e)
@@ -88,6 +96,7 @@ function BarberProfile() {
                 .catch((e) => {
                   console.log(e)
                 })
+
             })
             .catch((e) => {
               console.log(e)
@@ -144,7 +153,7 @@ function BarberProfile() {
                   })
                 Swal.fire('Sucesso', 'Dados atualizados com sucesso, faça o login novamente para visualizar as mudanças', 'sucess')
                 handleCloseBarber();
-                navigate("/");
+                navigate("/login-pag");
               })
               .catch((e) => {
                 alert(e)

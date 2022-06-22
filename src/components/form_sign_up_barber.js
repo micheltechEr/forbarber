@@ -6,7 +6,7 @@ import { Form, Button } from 'react-bootstrap'
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../css/cadastro.css';
-import { collection, addDoc } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { getDatabase, ref, set } from "@firebase/database";
 
@@ -44,7 +44,7 @@ function Form_SignUpBarber() {
     saveEmailandPassword: function () {
       const validateEmailBarber = barberFunctions.validateEmailBarber
       const fotoBarberiaRef = storage.ref(`fotoBarbearia/${fotoBarbearia.name}`);
-
+      const nome_barber_collection = state.nome_barbearia
       if (state.cidade !== "" && state.nome !== "" && state.telefone_barbearia !== "") {
         if (fotoBarbearia == null) return;
         if (state.email_barbearia !== '' && state.senha_barbearia !== '') {
@@ -53,7 +53,7 @@ function Form_SignUpBarber() {
               .then((userCredential) => {
                 const barberAuth = auth.currentUser;
                 const barberAuthRef = getDatabase()
-                uploadBytes(fotoBarberiaRef, fotoBarbearia).then(() => {
+                uploadBytes(fotoBarberiaRef, fotoBarbearia).then(async () => {
                   console.log('Upload');
                   try {
                     let barberData = {
@@ -70,7 +70,7 @@ function Form_SignUpBarber() {
                       barberData
                     })
 
-                    addDoc(collection(db, "barbearias"), {
+                   await setDoc(doc(db, "barbearias",nome_barber_collection), {
                       email_barber: state.email_barbearia,
                       nome_barber: state.nome_barbearia,
                       password_barber: state.senha_barbearia,
